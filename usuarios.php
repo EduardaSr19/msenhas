@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'template_admin.php';
 require 'conexao.php';
 
 // Verifica se o usuário é admin
@@ -13,18 +14,11 @@ $stmt = $pdo->query("SELECT * FROM usuarios ORDER BY id DESC");
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Gerenciar Usuários</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container py-5">
+
   <h2 class="mb-4">Gerenciamento de Usuários</h2>
 
-  <a href="form_usuario.php" class="btn btn-success mb-3">➕ Novo Usuário</a>
-  <a href="painel_admin.php" class="btn btn-secondary mb-3">⬅️ Voltar ao Painel Admin</a>
+  <a href="form_usuario.php" class="btn btn-success mb-3">Novo Usuário</a>
+  <a href="painel_admin.php" class="btn btn-secondary mb-3">Voltar ao Painel Admin</a>
 
   <table class="table table-bordered">
     <thead class="table-dark">
@@ -56,5 +50,5 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php endforeach; ?>
     </tbody>
   </table>
-</body>
-</html>
+
+  <?php require 'footer_admin.php'; ?>

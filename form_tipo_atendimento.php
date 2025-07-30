@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Cadastrar Tipo de Atendimento</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container py-5">
-  <h2 class="mb-4">Cadastrar Tipo de Atendimento</h2>
+<?php
+session_start();
+require 'conexao.php';
 
-  <form method="POST" action="cadastrar_tipo_atendimento.php">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome do Tipo:</label>
-      <input type="text" class="form-control" id="nome" name="nome" required placeholder="Ex: Comum, Preferencial">
-    </div>
+// Verifica se é admin
+if (!isset($_SESSION['usuario_id']) || $_SESSION['perfil'] !== 'admin') {
+    header("Location: login.php");
+    exit;
+}
 
-    <div class="mb-3">
-      <label for="prefixo" class="form-label">Prefixo:</label>
-      <input type="text" class="form-control" id="prefixo" name="prefixo" maxlength="1" required placeholder="Ex: A, P">
-    </div>
+include 'template_admin.php'; // Cabeçalho e menu lateral
+?>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-    <a href="emite.php" class="btn btn-secondary ms-2">Voltar</a>
-  </form>
-</body>
-</html>
+<div class="container py-4">
+    <h2 class="mb-4">Cadastrar Tipo de Atendimento</h2>
+
+    <form method="POST" action="cadastrar_tipo_atendimento.php">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome do Tipo:</label>
+            <input type="text" class="form-control" id="nome" name="nome" required placeholder="Ex: Comum, Preferencial">
+        </div>
+
+        <div class="mb-3">
+            <label for="prefixo" class="form-label">Prefixo:</label>
+            <input type="text" class="form-control" id="prefixo" name="prefixo" maxlength="1" required placeholder="Ex: A, P">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="emite.php" class="btn btn-secondary ms-2">Voltar</a>
+    </form>
+</div>
+
+<?php include 'footer_admin.php'; ?>

@@ -1,5 +1,7 @@
 <?php
 session_start();
+$titulo = "Painel Administrativo";
+require 'template_admin.php';
 require 'conexao.php';
 
 // Verifica se o usuário é admin
@@ -23,18 +25,9 @@ $stmt = $pdo->query("
 $senhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Painel Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container py-5">
-  <h2 class="mb-4">Painel Administrativo</h2>
-  <a href="logout.php" class="btn btn-outline-danger mb-3 float-end">Sair</a>
+<h2 class="mb-4">Painel Administrativo</h2>
 
-  <table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover">
     <thead class="table-dark">
       <tr>
         <th>#</th>
@@ -67,6 +60,6 @@ $senhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tr>
       <?php endforeach; ?>
     </tbody>
-  </table>
-</body>
-</html>
+</table>
+
+<?php require 'footer_admin.php'; ?>
